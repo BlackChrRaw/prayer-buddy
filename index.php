@@ -17,6 +17,12 @@ Users\Users::init();
 
 $user = Users\Users::getUser();
 
+if (user_is_ubermaster())
+define("WP_DEBUG", true);
+else
+	define("WP_DEBUG", false);
+
+
 if (is_user_logged_in()){
 	$title= "Prayer Buddy";
 	require_once( VIEW_PATH . DIRECTORY_SEPARATOR . 'header.php');

@@ -16,14 +16,16 @@
 //  
 //}
 
-define("WP_DEBUG", true);
-
 require_once 'lib/debug.php';
 
 class DB extends PDO{
 	
 	public static $instance;
 	
+	/**
+	 * 
+	 * @return PDO
+	 */
 	public static function getInstance(){
 		if(!DB::$instance instanceof self){
 			$dsn = "mysql:host=localhost;dbname=;";
@@ -57,7 +59,18 @@ function hhamming_autoload ($var )
 	
 	$dir = $obj;
 	array_pop($dir);
-	require_once LIB_PATH . DIRECTORY_SEPARATOR. join(DIRECTORY_SEPARATOR, $dir) . DIRECTORY_SEPARATOR . end($obj). ".php";
+	$file = LIB_PATH . DIRECTORY_SEPARATOR. join(DIRECTORY_SEPARATOR, $dir) . DIRECTORY_SEPARATOR . end($obj). ".php";
+	if (file_exists($file))
+	{
+		require_once $file;
+	} else {
+		if (WP_DEBUG)
+		{
+		$bt = debug_backtrace()[0];
+		
+		echo '<pre>Class ' . $var . ' does not exist, called at ' . $bt['file'] . ' at line ' . $bt['line'] . '</pre>';
+		}
+	}
 }
 
 spl_autoload_register("hhamming_autoload");
@@ -69,5 +82,7 @@ function is_user_logged_in()
 
 function user_is_ubermaster()
 {
+	if (!is_user_logged_in())
+		return false;
 	return \Users\Users::getUser()->ubermaster; 
 }

@@ -3,7 +3,7 @@
 
 <section class="container text-center align-middle">
 	
-		<div class="card w-50 ">
+		<div class="card  ">
 			
 			<form class="card-body" action="" method="post">
 				<h1 class="card-title">Prayer Login</h1>

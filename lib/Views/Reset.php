@@ -20,7 +20,10 @@ class Reset {
 		{
 			if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			{
-				$this->reset_buddies();
+				$reset = filter_input(INPUT_POST, 'reset-buddies');
+				
+				if ($reset)
+					$this->reset_buddies();
 			}
 			$users = \Users\Users::getAll();
 			require VIEW_PATH . DIRECTORY_SEPARATOR . 'reset.php';

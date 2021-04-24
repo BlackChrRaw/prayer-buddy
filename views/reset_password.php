@@ -1,12 +1,8 @@
 <?php require VIEW_PATH. DIRECTORY_SEPARATOR. "header.php";?>
 
-<script
-			  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-			  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-			  crossorigin="anonymous"></script>
 <section class="container align-middle">
 	
-		<div class="card w-50 ">
+		<div class="card ">
 			
 			<form class="card-body" action="" method="post">
 				<h1 class="card-title">Create a new password</h1>
